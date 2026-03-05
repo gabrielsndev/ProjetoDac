@@ -1,5 +1,6 @@
 package br.edu.ifpb.sr.dac.demo.model;
 
+import br.edu.ifpb.sr.dac.demo.model.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,6 +19,8 @@ public class Usuario {
     private String username;
     @Column(nullable = false)
     private String senha;
+    @Column(nullable = false)
+    private UserRole role;
 
     @Override
     public boolean equals(Object o) {

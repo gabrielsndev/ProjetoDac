@@ -2,6 +2,7 @@ package br.edu.ifpb.sr.dac.demo.controller;
 
 import br.edu.ifpb.sr.dac.demo.dto.GetUsuariosRespDTO;
 import br.edu.ifpb.sr.dac.demo.dto.PostUsuarioDTO;
+import br.edu.ifpb.sr.dac.demo.model.Usuario;
 import br.edu.ifpb.sr.dac.demo.service.UsuarioService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,5 +29,10 @@ public class UsuarioController {
     @GetMapping
     public ResponseEntity<List<GetUsuariosRespDTO>> getAllUsuarios() {
         return ResponseEntity.ok(this.usuarioService.listAll());
+    }
+
+    @GetMapping("/listar/admins")
+    public ResponseEntity<List<GetUsuariosRespDTO>> listAllAdmin() {
+        return ResponseEntity.ok(this.usuarioService.listAdmin());
     }
 }

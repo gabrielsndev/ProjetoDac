@@ -5,9 +5,11 @@ import br.edu.ifpb.sr.dac.demo.dto.GetUsuariosRespDTO;
 import br.edu.ifpb.sr.dac.demo.dto.PostUsuarioDTO;
 import br.edu.ifpb.sr.dac.demo.dto.UsuarioMapper;
 import br.edu.ifpb.sr.dac.demo.model.Usuario;
+import br.edu.ifpb.sr.dac.demo.model.enums.UserRole;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,6 +32,16 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public List<GetUsuariosRespDTO> listAll() {
-        return this.usuarioDao.findAll().stream().map(usuario -> new GetUsuariosRespDTO(usuario.getId(), usuario.getNome(), usuario.getUsername())).toList();
+        return this.usuarioDao.findAll().stream().map(usuario -> new GetUsuariosRespDTO(usuario.getId(), usuario.getNome(), usuario.getUsername(), usuario.getRole())).toList();
+    }
+
+    @Override
+    public List<GetUsuariosRespDTO> listAdmin() {
+        List<Usuario> admins = this.usuarioDao.findByRole(UserRole.ADMIN);
+        List<GetUsuariosRespDTO> responses = new ArrayList<>();
+        for(Usuario user: admins) {
+            responses.add(this.usuarioMapper.toDto(user));
+        }
+        return responses;
     }
 }

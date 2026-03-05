@@ -18,6 +18,7 @@
             <column name="senha" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
+
         </createTable>
     </changeSet>
 </databaseChangeLog>

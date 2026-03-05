@@ -16,10 +16,10 @@ mvnw.cmd
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
 *.iws
 *.iml
 *.ipr
+.idea
 
 ### NetBeans ###
 /nbproject/private/
