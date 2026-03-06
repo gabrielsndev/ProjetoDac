@@ -18,6 +18,6 @@ public class Chamado {
     private String descricao;
     @Column(nullable = false)
     private CallTypes categoria;
-    @Column(nullable = false)
-    private boolean prioridade = false;
+    @Column(nullable = true)
+    private boolean prioridade;
 }
