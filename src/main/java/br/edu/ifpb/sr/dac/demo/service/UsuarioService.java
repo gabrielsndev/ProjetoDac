@@ -7,7 +7,8 @@ import br.edu.ifpb.sr.dac.demo.model.Usuario;
 import java.util.List;
 
 public interface UsuarioService {
-    void save(PostUsuarioDTO dto);
+    void saveAdmin(PostUsuarioDTO dto);
+    void saveUsuario(PostUsuarioDTO dto);
     List<GetUsuariosRespDTO> listAll();
     List<GetUsuariosRespDTO> listAdmin();
 }

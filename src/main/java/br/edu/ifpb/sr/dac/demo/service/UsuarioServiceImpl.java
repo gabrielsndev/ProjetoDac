@@ -25,10 +25,20 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     @Transactional
-    public void save(PostUsuarioDTO dto) {
+    public void saveUsuario(PostUsuarioDTO dto) {
         Usuario usuario = this.usuarioMapper.toUsuarioEntity(dto);
+        usuario.setRole(UserRole.USER);
         this.usuarioDao.save(usuario);
     }
+
+    @Override
+    @Transactional
+    public void saveAdmin(PostUsuarioDTO dto) {
+        Usuario usuario = this.usuarioMapper.toUsuarioEntity(dto);
+        usuario.setRole(UserRole.ADMIN);
+        this.usuarioDao.save(usuario);
+    }
+
 
     @Override
     public List<GetUsuariosRespDTO> listAll() {

@@ -6,6 +6,5 @@ public record PostUsuarioDTO(
         String nome,
         String username,
         String senha,
-        String confirmacaoSenha,
-        UserRole role
+        String confirmacaoSenha
 ) {}

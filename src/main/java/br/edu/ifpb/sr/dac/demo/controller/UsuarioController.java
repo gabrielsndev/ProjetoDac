@@ -20,11 +20,18 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-    @PostMapping
-    public ResponseEntity<Boolean> postUsuario(@RequestBody PostUsuarioDTO dto) {
-        this.usuarioService.save(dto);
+    @PostMapping("create")
+    public ResponseEntity<Boolean> criarUsuario(@RequestBody PostUsuarioDTO dto) {
+        this.usuarioService.saveUsuario(dto);
         return ResponseEntity.created(URI.create("/1")).body(Boolean.TRUE);
     }
+
+    @PostMapping("/create/admin")
+    public ResponseEntity<Boolean> criarAdmin(@RequestBody PostUsuarioDTO dto) {
+        this.usuarioService.saveAdmin(dto);
+        return ResponseEntity.created(URI.create("/1")).body(Boolean.TRUE);
+    }
+
 
     @GetMapping
     public ResponseEntity<List<GetUsuariosRespDTO>> getAllUsuarios() {

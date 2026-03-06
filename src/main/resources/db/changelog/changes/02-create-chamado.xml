@@ -1,0 +1,39 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+
+    <changeSet id="4" author="autor">
+        <sql>CREATE TYPE categoria_enum AS ENUM ('SUPORTE', 'FINANCEIRO', 'HARDWARE');</sql>
+        <rollback>
+            <sql>DROP TYPE categoria_enum;</sql>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="3" author="autor">
+        <createTable tableName="chamado">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="criador" type="BIGINT">
+                <constraints foreignKeyName="fk_usuario"
+                    references="usuarios(id)"
+                    nullable="false"/>
+            </column>
+            <column name="titulo" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="descricao" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="categoria" type="categoria_enum">
+                <constraints nullable="false"/>
+            </column>
+            <column name="prioridade" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
