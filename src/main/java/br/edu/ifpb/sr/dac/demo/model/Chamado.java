@@ -20,4 +20,53 @@ public class Chamado {
     private CallTypes categoria;
     @Column(nullable = true)
     private boolean prioridade;
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getCriador() {
+        return criador;
+    }
+
+    public void setCriador(User criador) {
+        this.criador = criador;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public CallTypes getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(CallTypes categoria) {
+        this.categoria = categoria;
+    }
+
+    public boolean isPrioridade() {
+        return prioridade;
+    }
+
+    public void setPrioridade(boolean prioridade) {
+        this.prioridade = prioridade;
+    }
 }

@@ -2,8 +2,12 @@ package br.edu.ifpb.sr.dac.demo.controller;
 
 import br.edu.ifpb.sr.dac.demo.dto.GetUsuariosRespDTO;
 import br.edu.ifpb.sr.dac.demo.dto.PostUsuarioDTO;
-import br.edu.ifpb.sr.dac.demo.model.Usuario;
 import br.edu.ifpb.sr.dac.demo.service.UsuarioService;
+import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,13 +25,13 @@ public class UsuarioController {
     }
 
     @PostMapping("create")
-    public ResponseEntity<Boolean> criarUsuario(@RequestBody PostUsuarioDTO dto) {
+    public ResponseEntity<Boolean> criarUsuario(@RequestBody @Valid PostUsuarioDTO dto) {
         this.usuarioService.saveUsuario(dto);
         return ResponseEntity.created(URI.create("/1")).body(Boolean.TRUE);
     }
 
     @PostMapping("/create/admin")
-    public ResponseEntity<Boolean> criarAdmin(@RequestBody PostUsuarioDTO dto) {
+    public ResponseEntity<Boolean> criarAdmin(@RequestBody @Valid PostUsuarioDTO dto) {
         this.usuarioService.saveAdmin(dto);
         return ResponseEntity.created(URI.create("/1")).body(Boolean.TRUE);
     }
@@ -39,7 +43,10 @@ public class UsuarioController {
     }
 
     @GetMapping("/listar/admins")
-    public ResponseEntity<List<GetUsuariosRespDTO>> listAllAdmin() {
-        return ResponseEntity.ok(this.usuarioService.listAdmin());
+    public ResponseEntity<Page<GetUsuariosRespDTO>> listAllAdmin(
+            @PageableDefault(size = 10, sort = "nome", direction = Sort.Direction.ASC)
+            Pageable pageable
+    ) {
+        return ResponseEntity.ok(this.usuarioService.listAdmin(pageable));
     }
 }
