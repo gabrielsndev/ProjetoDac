@@ -4,14 +4,16 @@ import br.edu.ifpb.sr.dac.demo.model.enums.CallTypes;
 import jakarta.persistence.*;
 import liquibase.license.User;
 import lombok.Data;
+import org.hibernate.annotations.ManyToAny;
 
 @Data
 @Entity
 public class Chamado {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
-    private User criador;
+    @ManyToOne
+    @JoinColumn(name = "criador_id")
+    private Usuario criador;
     @Column(nullable = false)
     private String titulo;
     @Column(nullable = false)
@@ -30,11 +32,11 @@ public class Chamado {
         this.id = id;
     }
 
-    public User getCriador() {
+    public Usuario getCriador() {
         return criador;
     }
 
-    public void setCriador(User criador) {
+    public void setCriador(Usuario criador) {
         this.criador = criador;
     }
 

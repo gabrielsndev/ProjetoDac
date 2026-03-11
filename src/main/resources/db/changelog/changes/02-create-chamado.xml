@@ -19,7 +19,7 @@
             </column>
             <column name="criador" type="BIGINT">
                 <constraints foreignKeyName="fk_usuario"
-                    references="usuarios(id)"
+                    references="usuario(id)"
                     nullable="false"/>
             </column>
             <column name="titulo" type="VARCHAR(100)">
