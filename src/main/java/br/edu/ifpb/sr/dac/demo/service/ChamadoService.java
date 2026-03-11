@@ -4,6 +4,7 @@ import br.edu.ifpb.sr.dac.demo.dao.ChamadoDao;
 import br.edu.ifpb.sr.dac.demo.dao.UsuarioDao;
 import br.edu.ifpb.sr.dac.demo.dto.ChamadoMapper;
 import br.edu.ifpb.sr.dac.demo.dto.ChamadoRequestDTO;
+import br.edu.ifpb.sr.dac.demo.dto.ChamadoResponseDTO;
 import br.edu.ifpb.sr.dac.demo.model.Chamado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,9 +30,13 @@ public class ChamadoService {
         this.daoChamado.save(chamado);
     }
 
-    public List<Chamado> MyChamados(Long idUser) {
+    public List<ChamadoResponseDTO> MyChamados(Long idUser) {
         List<Chamado> chamados = daoChamado.findByCriador(daoUser.findById(idUser));
-
+        List<ChamadoResponseDTO> chamadosDTO = new ArrayList<>();
+        for(Chamado chamado: chamados){
+            chamadosDTO.add(mapper.toDto(chamado));
+        }
+        return chamadosDTO;
     }
 
 }
