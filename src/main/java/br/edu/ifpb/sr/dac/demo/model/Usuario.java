@@ -21,6 +21,10 @@ public class Usuario {
     private String senha;
     @Column(nullable = false)
     private UserRole role;
+    @Column(nullable = false)
+    private String email;
+    @Column(nullable = false)
+    private String cpf;
 
     @Override
     public boolean equals(Object o) {
@@ -72,5 +76,21 @@ public class Usuario {
 
     public void setRole(UserRole role) {
         this.role = role;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 }

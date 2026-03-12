@@ -25,6 +25,12 @@
             <column name="senha" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
+            <column name="cpf" type="VARCHAR(13)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
 
         </createTable>
     </changeSet>
